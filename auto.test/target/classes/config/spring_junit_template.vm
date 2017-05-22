@@ -1,0 +1,61 @@
+/**                                                                        
+ * Copyright(c) 2012~now, wjy          all rights reserved.         
+ *                                                                          
+ * This software is the confidential and proprietary information            
+ * of wjy. You shall not disclose such Confidential        
+ * Information and shall use it only in accordance with the terms           
+ * of the license agreement you entered into with wjy.     
+*/                                                                          
+/**                                                                         
+ * Copyright(c) 2012~now, wjy all rights reserved.         
+ *                                                                          
+ * This software is the confidential and proprietary information            
+ * of wjy. You shall not disclose such Confidential        
+ * Information and shall use it only in accordance with the terms           
+ * of the license agreement you entered into with wjy.     
+*/                                                                          
+package $!{beanInfo.beanPackage};                                                
+                                                                            
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+
+import com.alibaba.fastjson.JSONObject;
+improt com.alibaba.fastjson.TypeReference;
+
+import $!{beanInfo.beanFullClass};
+import com.auto.test.entity.ArgProp;
+import com.auto.test.tools.fileproc.CompareTools;
+import com.auto.test.tools.reflect.PrivateUtil;
+                                                                            
+                                                                       
+                                                                            
+public class $!{beanInfo.beanClass}Test extends BaseTest{                  
+                                                                            
+   @Autowired(required=false)                                               
+   private $!{beanInfo.beanClass} $!{beanInfo.beanName};
+   @Before                                                                  
+   public void setUp() throws Exception{                                    
+       super.setUp();                                                       
+       System.out.println("start junit test $!{beanInfo.beanName}....");       
+    }
+
+   @After                                                                   
+   public void tearDown() throws Exception{                                 
+       System.out.println("end junit test  $!{beanInfo.beanName}....");       
+       super.tearDown();                                                    
+    
+    }
+
+                                                                     
+    private void databasePrepareForTest(){                                  
+       //TODO                                                               
+    
+    }
+    
+$!{methodDetail}
+    
+}

@@ -1,0 +1,25 @@
+	@Test 
+	@Rollback(true)
+	public void $!{method.methodName}Test() $!{method.declaredExcetpion} {
+	    System.out.println("start junit test method --------------- $!{method.methodName} ----------------------");
+	    
+#foreach($inputProp in $method.inputProps)
+	    $!{inputProp.fullType} $!{inputProp.argName} = $!{inputProp.valueExpression};
+#end
+
+#if(${method.outputProp})
+	    $!{method.outputProp.fullType} $!{method.outputProp.argName} = $!{method.outputProp.valueExpression};
+	  
+		$!{method.outputProp.fullType} callResult = 
+#end     
+	    #if($!{method.isPublic})
+			    $!{beanName}.$!{method.methodName}(#set ($i=0)#foreach($inputProp in $method.inputProps)#if($i==0)$!{inputProp.argName}#else, $!{inputProp.argName}#end#set($i=$i+1)#end);
+			#else
+	    	PrivateUtil.invoke($!{beanName}, "$!{method.methodName}", new Class[]{#set ($i=0)#foreach($inputProp in $method.inputProps)#if($i==0)$!{inputProp.fullType}#else, $!{inputProp.fullType}#end#set($i=$i+1)#end}, 
+	    	            new Object[]{#set ($i=0)#foreach($inputProp in $method.inputProps)#if($i==0)$!{inputProp.argName}#else, $!{inputProp.argName}#end#set($i=$i+1)#end}); 
+			#end
+
+#if(${method.outputProp})
+	    assertTrue(CompareTools.$!{method.outputProp.compareMethod}(callResult,exceptResult));
+#end                     
+	}
